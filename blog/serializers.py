@@ -8,7 +8,7 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'blog', 'author_name', 'author_email', 'content', 'rating', 'is_approved', 'created_at'
         ]
-        read_only_fields = ['id', 'created_at', 'is_approved']
+        read_only_fields = ['id', 'created_at', 'is_approved', 'blog']
 
 
 class CategorySerializer(serializers.ModelSerializer):
