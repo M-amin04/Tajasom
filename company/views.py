@@ -13,7 +13,6 @@ class CompanyHistoryViewSet(viewsets.ModelViewSet):
 class CompanyInfoViewSet(viewsets.ModelViewSet):
     queryset = CompanyInfo.objects.all()
     serializer_class = CompanyInfoSerializer
-    http_method_names = ['get']
 
 
 class TeamMemberViewSet(viewsets.ModelViewSet):
@@ -32,4 +31,3 @@ class ClientViewSet(viewsets.ModelViewSet):
 class CompanyContactViewSet(viewsets.ModelViewSet):
     queryset = CompanyContact.objects.all()
     serializer_class = CompanyContactSerializer
-    http_method_names = ['get']

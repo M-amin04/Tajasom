@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Project, ProjectImage
+from .models import Project, ProjectImage, Category
 
 
 class ProjectImageSerializer(serializers.ModelSerializer):
@@ -8,8 +8,17 @@ class ProjectImageSerializer(serializers.ModelSerializer):
         fields = ['id', 'image', 'title', 'description', 'order', 'is_main']
 
 
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'title']
+
+
 class ProjectSerializer(serializers.ModelSerializer):
     images = ProjectImageSerializer(many=True, read_only=True)
+    category = serializers.PrimaryKeyRelatedField(
+        queryset=Category.objects.all()
+    )
 
     class Meta:
         model = Project

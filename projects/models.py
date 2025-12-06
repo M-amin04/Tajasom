@@ -1,20 +1,17 @@
 from django.db import models
 from django.utils import timezone
 
+class Category(models.Model):
+    title = models.CharField(max_length=100, verbose_name='دسته بندی')
+
+    class Meta:
+        verbose_name = 'دسته بندی'
+        verbose_name_plural = 'دسته بندی ها'
+
+    def __str__(self):
+        return self.title
 
 class Project(models.Model):
-    CATEGORY_CHOICES = [
-        ('petrochemical', 'پتروشیمی'),
-        ('oil', 'نفت'),
-        ('atomic energy', 'گاز'),
-        ('steel', 'فولاد'),
-        ('pharmaceutical', 'صنعتی'),
-        ('construction', 'ساختمانی'),
-        ('road construction', 'ساخت و ساز جاده'),
-        ('urban development', 'توسعه شهری'),
-        ('other', 'غیره')
-    ]
-
     STATUS_CHOICES = [
         ('finished', 'تکمیل شده'),
         ('in_progress', 'در حال اجرا'),
@@ -24,9 +21,9 @@ class Project(models.Model):
     title = models.CharField(max_length=200, verbose_name='عنوان پروژه')
     slug = models.SlugField(max_length=200, unique=True, verbose_name='اسلاگ', blank=True)
     description = models.TextField(verbose_name='توضیحات')
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, verbose_name='دسته بندی')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='دسته بندی')
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='completed', verbose_name='وضعیت')
-    image = models.ImageField(upload_to='projects/main/', verbose_name='تصویر')
+    image = models.ImageField(upload_to='projects/main/', verbose_name='تصویر', null=True, blank=True)
     client_name = models.CharField(max_length=100, blank=True, verbose_name='نام کارفرما')
     project_date = models.DateField(default=timezone.now, verbose_name='تاریخ پروژه')
     location = models.CharField(max_length=100, blank=True, verbose_name='موقعیت')

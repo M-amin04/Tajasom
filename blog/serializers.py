@@ -19,19 +19,15 @@ class CategorySerializer(serializers.ModelSerializer):
 class BlogSerializer(serializers.ModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
     comments_count = serializers.SerializerMethodField()
-    category = CategorySerializer(read_only=True)
-    category_id = serializers.PrimaryKeyRelatedField(
-        queryset=Category.objects.all(),
-        source='category',
-        write_only=True,
-        required=False
+    category = serializers.PrimaryKeyRelatedField(
+        queryset=Category.objects.all()
     )
 
     class Meta:
         model = Blog
         fields = [
             'id', 'title', 'slug', 'content', 'cover_image',
-            'category', 'category_id', 'author', 'view_count', 'created_at', 'updated_at',
+            'category', 'author', 'view_count', 'created_at', 'updated_at',
             'is_published', 'is_featured', 'published_at',
             'comments', 'comments_count'
         ]

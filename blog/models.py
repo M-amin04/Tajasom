@@ -15,7 +15,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=200, verbose_name='عنوان مقاله')
     slug = models.SlugField(max_length=200, unique=True, verbose_name='اسلاگ', blank=True)
     content = models.TextField(verbose_name='محتوای مقاله')
-    cover_image = models.ImageField(upload_to='blog/covers/', verbose_name='تصویر کاور')
+    cover_image = models.ImageField(upload_to='blog/covers/', verbose_name='تصویر کاور', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='دسته بندی')
     author = models.CharField(max_length=100, default='تیم پرتو تجسم', verbose_name='نویسنده')
     view_count = models.PositiveIntegerField(default=0, verbose_name='تعداد بازدید')
