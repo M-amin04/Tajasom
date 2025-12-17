@@ -12,7 +12,7 @@ class CategoryModelTest(TestCase):
 
 class BlogModelTest(TestCase):
     def setUp(self):
-        self.category = Category.objects.create(title='ورزش')
+        self.category = Category.objects.create(title='ساخت و ساز')
 
     def test_create_blog(self):
         blog = Blog.objects.create(
