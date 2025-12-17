@@ -4,7 +4,6 @@ from rest_framework import status
 from projects.models import Category, Project
 
 
-
 class ProjectViewSetTest(TestCase):
     def setUp(self):
         self.category = Category.objects.create(title='نفت')

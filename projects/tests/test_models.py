@@ -1,4 +1,3 @@
-from unicodedata import category
 from unittest import TestCase
 from projects.models import Category, Project, ProjectImage
 
