@@ -16,12 +16,12 @@ class BlogModelTest(TestCase):
 
     def test_create_blog(self):
         blog = Blog.objects.create(
-            title='مقاله ورزشی',
+            title='مقاله ساخت و ساز',
             content='محتوای مقاله',
             category=self.category,
             author='نویسنده تست'
         )
-        self.assertEqual(blog.title, 'مقاله ورزشی')
+        self.assertEqual(blog.title, 'مقاله ساخت و ساز')
         self.assertEqual(blog.view_count, 0)
         self.assertFalse(blog.is_published)
         self.assertFalse(blog.is_featured)
